@@ -6,6 +6,30 @@ every page in sync). Deploys to Netlify with Pretty URLs; canonical pattern is
 extensionless throughout (see `netlify.toml` for the `.html` → extensionless
 redirect).
 
+## Brand — FINALIZED (no longer placeholder)
+
+Logo, palette, and typography are now the client's real, approved brand:
+
+- **Logo:** `images/logo.png` — real transparent PNG from the client, used in header
+  and footer across every page. `favicon.png` and `og-default.png` were generated
+  from it (centered on brand cream / brand rust respectively).
+- **Palette** (in `css/style.css` `:root`, extracted directly from the approved
+  logo via k-means clustering, not eyeballed):
+  - `--color-court: #AF4E15` — rust orange, primary
+  - `--color-gold: #DCA428` — golden yellow, accent/CTA
+  - `--color-chalk: #FDF6E8` — cream, background
+  - `--color-clay: #A66C35` — muted brown-tan, secondary accent
+  - `--color-palm: #88C717` — pickleball green, live/active indicator
+  - `--color-slate: #798B8B` — ocean slate blue-gray, sparing use
+  - `--color-ink: #3A2612` — warm dark brown-black, text
+- **Typography:** Display/heading font is now **Bevan** (matches the badge's bold
+  slab-serif lettering). Body remains Work Sans, utility/mono remains IBM Plex Mono.
+
+The old teal/navy placeholder palette and hand-drawn SVG brand mark are fully
+retired — swap only needed touching `css/style.css` tokens plus the three image
+files, no HTML markup changes required since everything referenced tokens or the
+`/images/logo.png` path from the start.
+
 ## Why this build deviates from the standard Baseline home-service template
 
 This client is a multi-region sports league, not a single-location home service
@@ -24,10 +48,6 @@ business. The standard "5 services × 10 cities" model doesn't map cleanly, so:
 
 ## Placeholder / TODO — confirm before launch
 
-- **Brand:** Colors, fonts, and logo are all placeholder (see `css/style.css`
-  design tokens at the top of the file — everything lives in CSS custom
-  properties for a one-file swap). Placeholder favicon/OG image are generated
-  flat color squares in `images/` — replace with real logo assets.
 - **Registration link:** `/register` points to `https://ctpl.pickleballscores.com`
   (the site root). Jon has not yet created a direct registration link — swap
   `REGISTER_URL` in `build.py` once he does, then re-run the generator.

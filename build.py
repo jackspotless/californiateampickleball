@@ -27,11 +27,11 @@ NAV_REGIONS = [
 def svg_courtlines():
     # Decorative pickleball court-line motif used behind hero content.
     return '''<svg class="hero-courtlines" width="100%" height="100%" viewBox="0 0 1200 600" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <rect x="40" y="40" width="1120" height="520" fill="none" stroke="#F6F3EC" stroke-width="2"/>
-  <line x1="600" y1="40" x2="600" y2="560" stroke="#F6F3EC" stroke-width="2"/>
-  <line x1="40" y1="220" x2="1160" y2="220" stroke="#F6F3EC" stroke-width="2"/>
-  <line x1="40" y1="380" x2="1160" y2="380" stroke="#F6F3EC" stroke-width="2"/>
-  <circle cx="600" cy="300" r="3" fill="#F6F3EC"/>
+  <rect x="40" y="40" width="1120" height="520" fill="none" stroke="#FDF6E8" stroke-width="2"/>
+  <line x1="600" y1="40" x2="600" y2="560" stroke="#FDF6E8" stroke-width="2"/>
+  <line x1="40" y1="220" x2="1160" y2="220" stroke="#FDF6E8" stroke-width="2"/>
+  <line x1="40" y1="380" x2="1160" y2="380" stroke="#FDF6E8" stroke-width="2"/>
+  <circle cx="600" cy="300" r="3" fill="#FDF6E8"/>
 </svg>'''
 
 def social_icon(name, href):
@@ -55,7 +55,7 @@ def head(path, title, description, schema_blocks):
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="{canonical}">
 
-<meta name="theme-color" content="#1C4E52">
+<meta name="theme-color" content="#AF4E15">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 <link rel="apple-touch-icon" href="/images/favicon.png">
 
@@ -72,7 +72,7 @@ def head(path, title, description, schema_blocks):
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bevan&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/css/style.css?v={CSSV}">
 {schema_json}'''
@@ -95,13 +95,7 @@ def header(active_path):
 <header class="site-header">
   <div class="container">
     <a class="brand" href="/">
-      <svg class="brand-mark" width="34" height="34" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <rect x="3" y="3" width="34" height="34" rx="4" fill="#1C4E52"/>
-        <line x1="20" y1="6" x2="20" y2="34" stroke="#F6F3EC" stroke-width="2"/>
-        <line x1="6" y1="14" x2="34" y2="14" stroke="#F6F3EC" stroke-width="2"/>
-        <line x1="6" y1="26" x2="34" y2="26" stroke="#F6F3EC" stroke-width="2"/>
-        <circle cx="20" cy="20" r="2.5" fill="#E3A73B"/>
-      </svg>
+      <img class="brand-mark" src="/images/logo.png" width="44" height="44" alt="" loading="eager">
       <span class="brand-full">California Team Pickleball</span>
       <span class="brand-short">CTPL</span>
     </a>
