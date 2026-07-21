@@ -105,6 +105,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   background: var(--color-gold);
   flex-shrink: 0;
 }
+.eyebrow-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(255,255,255,0.35);
+  text-underline-offset: 0.2em;
+}
+.eyebrow-link:hover { text-decoration-color: currentColor; }
 .section { padding: var(--space-6) 0; }
 .section-tight { padding: var(--space-5) 0; }
 .section-alt { background: var(--color-court); color: var(--color-chalk); }
@@ -337,6 +344,21 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .hero p.lede { font-size: 1.15rem; max-width: 46ch; color: rgba(253,246,232,0.88); }
 
+/* Logo feature — the badge logo standing in the hero's right column,
+   in place of the Season Status scorecard. */
+.hero-logo-feature {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-logo-feature img {
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 40px rgba(16,10,4,0.4));
+}
+
 /* Scorecard — the site's signature module, modeled on a real
    team-pickleball line scoresheet: a labeled header bar over
    tabular rows. Reused for league cards, region cards, news items. */
@@ -385,6 +407,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 @media (max-width: 860px) {
   .grid-3, .grid-2 { grid-template-columns: 1fr; }
   .hero-inner { grid-template-columns: 1fr; }
+  .hero-logo-feature img { max-width: 220px; }
 }
 
 .league-card, .region-card, .news-card {

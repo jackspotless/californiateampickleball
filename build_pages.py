@@ -8,21 +8,16 @@ body = f'''
   {svg_courtlines()}
   <div class="container hero-inner">
     <div>
-      <span class="eyebrow">Team Pickleball &middot; California</span>
-      <h1>Team pickleball,<br>organized right.</h1>
+      <span class="eyebrow"><a class="eyebrow-link" href="{ATPL_URL}" target="_blank" rel="noopener">American Team Pickleball League</a> &middot; California</span>
+      <h1>Compete Locally.<br>Qualify Nationally.</h1>
       <p class="lede">California Team Pickleball runs organized, division-based team leagues for players who want real competition and a real team behind them. Live now in the Desert / Coachella Valley &mdash; more of California is next.</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="/register">Register a Team</a>
         <a class="btn btn-outline" href="/leagues/">See the Leagues</a>
       </div>
     </div>
-    <div class="scorecard" role="note" aria-label="Current season status">
-      <div class="scorecard-bar"><span>Season Status</span><span class="status-live">&#9679; Live</span></div>
-      <div class="scorecard-body">
-        <div class="scorecard-row"><span class="label">Fall Day League</span><span class="value">Enrolling</span></div>
-        <div class="scorecard-row"><span class="label">Fall Night League</span><span class="value">Enrolling</span></div>
-        <div class="scorecard-row"><span class="label">Winter Night League</span><span class="value">Announced</span></div>
-      </div>
+    <div class="hero-logo-feature">
+      <img src="/images/logo.png" width="360" height="360" alt="California Team Pickleball logo">
     </div>
   </div>
 </section>
