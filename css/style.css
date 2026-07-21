@@ -481,6 +481,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .faq-item[open] summary::after { content: "\2212"; }
 .faq-item p { padding-bottom: 1.1em; color: var(--color-ink-soft); }
+.section-alt .faq-item p { color: rgba(253,246,232,0.85); }
+.section-alt .faq-item summary::after { color: var(--color-gold); }
 
 /* ---------- Venue list ---------- */
 .venue-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
