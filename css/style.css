@@ -109,6 +109,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .section-tight { padding: var(--space-5) 0; }
 .section-alt { background: var(--color-court); color: var(--color-chalk); }
 .section-alt .eyebrow { color: var(--color-gold); }
+.hero .eyebrow { color: var(--color-gold); }
 
 .btn {
   display: inline-flex;
@@ -129,6 +130,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .btn-outline { background: transparent; color: inherit; border-color: currentColor; }
 .btn-outline:hover { background: rgba(255,255,255,0.08); transform: translateY(-2px); }
 .btn-block { width: 100%; justify-content: center; }
+.btn-sm { padding: 0.55em 1.1em; font-size: 0.8125rem; }
 
 .cta-row { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
 
@@ -144,7 +146,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 76px;
+  height: 84px;
 }
 .brand {
   display: flex;
@@ -158,8 +160,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   letter-spacing: 0.01em;
 }
 .brand-mark {
-  width: 44px;
-  height: 44px;
+  width: 64px;
+  height: 64px;
   flex-shrink: 0;
   object-fit: contain;
 }
@@ -260,12 +262,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     flex-direction: column;
     align-items: stretch;
     position: absolute;
-    top: 76px; left: 0; right: 0;
+    top: 84px; left: 0; right: 0;
     background: var(--color-chalk);
     border-bottom: 1px solid var(--color-line);
     padding: var(--space-3);
     gap: var(--space-1);
-    max-height: calc(100vh - 76px);
+    max-height: calc(100vh - 84px);
     overflow-y: auto;
   }
   .nav-toggle { display: inline-flex; }
@@ -285,10 +287,31 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .brand-short { display: inline; }
 }
 
+/* ---------- Register/scores banner (sitewide, sits under sticky header) ---------- */
+.register-banner {
+  background: var(--color-court);
+  color: var(--color-chalk);
+  border-bottom: 1px solid var(--color-court-dark);
+}
+.register-banner-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 0.65em 0;
+}
+.register-banner-text { font-size: 0.9rem; }
+.register-banner-text strong { color: var(--color-gold); }
+.register-banner-links { display: flex; gap: var(--space-1); flex-shrink: 0; }
+@media (max-width: 700px) {
+  .register-banner-inner { justify-content: center; text-align: center; }
+}
+
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  background: var(--color-court);
+  background: var(--color-clay);
   color: var(--color-chalk);
   overflow: hidden;
   padding: var(--space-6) 0 var(--space-5);
@@ -388,6 +411,16 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   text-transform: uppercase;
   color: var(--color-clay);
 }
+
+/* ---------- Social feed placeholder (pending live Instagram embed) ---------- */
+.feed-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-2); }
+.feed-tile {
+  aspect-ratio: 1 / 1;
+  background: var(--color-chalk-dim);
+  border: 1.5px dashed var(--color-clay);
+  border-radius: var(--radius-sm);
+}
+@media (max-width: 700px) { .feed-grid { grid-template-columns: repeat(2, 1fr); } }
 
 /* ---------- Trust / stats strip ---------- */
 .stat-strip {

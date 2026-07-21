@@ -12,8 +12,10 @@ PHONE_DISPLAY = "(951) 858-6070"
 PHONE_TEL = "+19518586070"
 EMAIL = "jon@desertatpl.com"  # TODO: confirm if a @caliteampickleball.com address will be set up post-rebrand
 REGISTER_URL = "https://ctpl.pickleballscores.com"  # TODO: swap for direct registration link once Jon creates one
+ATPL_URL = "https://atplnation.org"
+INSTAGRAM_URL = "https://instagram.com/desertatpl"  # confirmed handle; flag if a @caliteampickleball handle replaces this post-rebrand
 CSSV = "20260715"
-OUT = "/home/claude/ctpl"
+OUT = os.path.dirname(os.path.abspath(__file__))
 
 NAV_LEAGUES = [
     ("/leagues/fall-day", "Fall Day League"),
@@ -95,7 +97,7 @@ def header(active_path):
 <header class="site-header">
   <div class="container">
     <a class="brand" href="/">
-      <img class="brand-mark" src="/images/logo.png" width="44" height="44" alt="" loading="eager">
+      <img class="brand-mark" src="/images/logo.png" width="64" height="64" alt="" loading="eager">
       <span class="brand-full">California Team Pickleball</span>
       <span class="brand-short">CTPL</span>
     </a>
@@ -127,6 +129,20 @@ def header(active_path):
   </div>
 </header>'''
 
+def register_banner():
+    # Sitewide strip pointing to the league management partner for both
+    # registration and score entry. Placement/exact target confirmed with
+    # Jon; swap REGISTER_URL for a direct flow link once he provides one.
+    return f'''<div class="register-banner">
+  <div class="container register-banner-inner">
+    <span class="register-banner-text"><strong>Season registration is open.</strong> Register your team or enter match scores on our league platform.</span>
+    <div class="register-banner-links">
+      <a class="btn btn-primary btn-sm" href="{REGISTER_URL}" target="_blank" rel="noopener">Register a Team</a>
+      <a class="btn btn-outline btn-sm" href="{REGISTER_URL}" target="_blank" rel="noopener">Enter / View Scores</a>
+    </div>
+  </div>
+</div>'''
+
 def footer():
     league_links = "\n            ".join(f'<li><a href="{href}">{label}</a></li>' for href, label in NAV_LEAGUES)
     region_links = "\n            ".join(f'<li><a href="{href}">{label}</a></li>' for href, label in NAV_REGIONS)
@@ -149,7 +165,7 @@ def footer():
         <h4>Follow</h4>
         <div class="footer-social">
           {social_icon("facebook", "#")}
-          {social_icon("instagram", "#")}
+          {social_icon("instagram", INSTAGRAM_URL)}
         </div>
       </div>
     </div>
@@ -178,6 +194,7 @@ def footer():
           <li><a href="/news/">News</a></li>
           <li><a href="/contact">Contact</a></li>
           <li><a href="/register">Register a Team</a></li>
+          <li><a href="{ATPL_URL}" target="_blank" rel="noopener">ATPL Nation &#8599;</a></li>
         </ul>
       </div>
     </div>
@@ -218,6 +235,7 @@ def page(path, title, description, body, schema_blocks=None, nav_active=None):
 </head>
 <body>
 {header(active)}
+{register_banner()}
 <main id="main">
 {body}
 </main>

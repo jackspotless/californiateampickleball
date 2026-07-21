@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from build import page, breadcrumbs, breadcrumb_schema, svg_courtlines, DOMAIN, BRAND, REGISTER_URL
+from build import page, breadcrumbs, breadcrumb_schema, svg_courtlines, DOMAIN, BRAND, REGISTER_URL, ATPL_URL, INSTAGRAM_URL
 
 # ============================================================= HOME
 trail = [("Home", None)]
@@ -23,6 +23,22 @@ body = f'''
         <div class="scorecard-row"><span class="label">Fall Night League</span><span class="value">Enrolling</span></div>
         <div class="scorecard-row"><span class="label">Winter Night League</span><span class="value">Announced</span></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">On the Courts</span>
+      <h2>Follow along on Instagram.</h2>
+      <p>Recent photos from the league and players.</p>
+    </div>
+    <div id="ft-insta-app"></div>
+    <script type="module">import App from "https://cdn.fouita.com/public/instagram-feed.js?11";new App({{target: document.getElementById("ft-insta-app"),props:{{"settings":{{"layout":"carousel","source":"insta","selected":"uname","header":true,"autoplay":true,"zigzag":false,"cols":4,"cardHeight":300,"gap":0,"direction":"down","height":700,"bgColor":"","txtColor":""}}}}}});</script>
+    <div id="ft-insta-brd"><a href="https://fouita.com/website-widgets/instagram-feed" target="_blank">Embed Instagram Feed</a><a href="https://fouita.com" target="_blank">with Fouita</a></div>
+    <div class="cta-row" style="margin-top: var(--space-3);">
+      <a class="btn btn-outline" href="{INSTAGRAM_URL}" target="_blank" rel="noopener">Follow on Instagram</a>
     </div>
   </div>
 </section>
@@ -108,6 +124,16 @@ body = f'''
   </div>
 </section>
 
+<section class="section-tight">
+  <div class="container">
+    <div class="callout">
+      <span class="eyebrow">Sponsorship</span>
+      <h2>Sponsor a CTPL season.</h2>
+      <p>Sponsorship packages for the upcoming season are in development. If you're interested in supporting California Team Pickleball, <a href="/contact">get in touch</a> and we'll follow up with details.</p>
+    </div>
+  </div>
+</section>
+
 <section class="section section-alt">
   <div class="container">
     <div class="section-head">
@@ -176,7 +202,8 @@ body = f'''
 <section class="section">
   <div class="container">
     <div class="prose">
-      <p>California Team Pickleball began as the Desert American Team Pickleball League (Desert ATPL), running competitive team leagues across the Coachella Valley under regional director Jon Graham. As the organization grows beyond the desert, it's rebranding to California Team Pickleball &mdash; the same league structure and local leadership, with room to bring organized team play to new regions across the state.</p>
+      <p>Founded by Jon and Dana Graham, California Team Pickleball (CTPL) is the California chapter of the <a href="{ATPL_URL}" target="_blank" rel="noopener">American Team Pickleball League (ATPL)</a>. After four successful seasons in the Coachella Valley, CTPL is expanding organized team pickleball leagues to communities across California.</p>
+      <p>California Team Pickleball offers structured, competitive team leagues where players compete alongside friends throughout the season. Qualifying divisions earn the opportunity to represent California at the American Team Pickleball League National Championships.</p>
 
       <h2>What stays the same</h2>
       <p>The desert region keeps its leagues, its venues, and its people. Fall Day, Fall Night, and Winter Night League all continue under Jon Graham's direction. If you played under the Desert ATPL name before, you're still in the right place.</p>
@@ -188,7 +215,7 @@ body = f'''
       <p>Rather than open individual play, players compete as part of a team through a season of scheduled matches against other teams in their division. Divisions are organized by skill level, age bracket, and gender to keep matches competitive. Standings track through the season, and each session crowns a champion.</p>
 
       <h2>Leadership</h2>
-      <p>Jon Graham serves as regional director for the Desert / Coachella Valley region. For league questions, team registration help, or interest in bringing California Team Pickleball to a new area, <a href="/contact">get in touch</a>.</p>
+      <p>California Team Pickleball was founded by Jon and Dana Graham. Jon serves as regional director for the Desert / Coachella Valley region. For league questions, team registration help, or interest in bringing California Team Pickleball to a new area, <a href="/contact">get in touch</a>.</p>
     </div>
   </div>
 </section>
