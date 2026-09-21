@@ -112,6 +112,61 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   text-underline-offset: 0.2em;
 }
 .eyebrow-link:hover { text-decoration-color: currentColor; }
+
+/* Affiliation badge — used on the hero to call out the ATPL national tie-in
+   prominently rather than as a small eyebrow line. Pill shape echoes the
+   logo's own badge form. */
+.affiliation-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  background: var(--color-gold);
+  border: 2px solid var(--color-ink);
+  border-radius: 999px;
+  padding: 0.6em 1.2em;
+  margin-bottom: var(--space-3);
+}
+.affiliation-badge::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-palm);
+  flex-shrink: 0;
+}
+.affiliation-badge a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(58,38,18,0.4);
+  text-underline-offset: 0.2em;
+}
+.affiliation-badge a:hover { text-decoration-color: currentColor; }
+@media (max-width: 640px) {
+  .affiliation-badge { font-size: 0.85rem; padding: 0.5em 0.9em; }
+}
+
+/* Instagram feed embed (SociableKIT iframe) — bordered card frame consistent
+   with the site's card language; fixed aspect area with internal scroll so a
+   tall feed doesn't blow out page length. */
+.instagram-embed {
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--color-chalk-dim);
+}
+.instagram-embed iframe {
+  display: block;
+  width: 100%;
+  height: 1000px;
+  border: 0;
+}
+
 .section { padding: var(--space-6) 0; }
 .section-tight { padding: var(--space-5) 0; }
 .section-alt { background: var(--color-court); color: var(--color-chalk); }

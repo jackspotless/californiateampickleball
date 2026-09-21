@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from build import page, breadcrumbs, breadcrumb_schema, svg_courtlines, DOMAIN, BRAND, REGISTER_URL, GENERAL_REGISTER_URL, ATPL_URL, INSTAGRAM_URL, INSTAGRAM_WIDGET_SCRIPT, INSTAGRAM_WIDGET_ID, INSTAGRAM_WIDGET_KEY, RULEBOOK_URL, SCORESHEET_URL, FALL_NIGHT_2026_REGISTER_URL, FALL_DAY_2026_REGISTER_URL
+from build import page, breadcrumbs, breadcrumb_schema, svg_courtlines, DOMAIN, BRAND, REGISTER_URL, GENERAL_REGISTER_URL, ATPL_URL, INSTAGRAM_URL, INSTAGRAM_WIDGET_IFRAME_SRC, RULEBOOK_URL, SCORESHEET_URL, FALL_NIGHT_2026_REGISTER_URL, FALL_DAY_2026_REGISTER_URL
 
 # ============================================================= HOME
 trail = [("Home", None)]
@@ -8,7 +8,7 @@ body = f'''
   {svg_courtlines()}
   <div class="container hero-inner">
     <div>
-      <span class="eyebrow"><a class="eyebrow-link" href="{ATPL_URL}" target="_blank" rel="noopener">American Team Pickleball League</a> &middot; California</span>
+      <span class="affiliation-badge">Official <a href="{ATPL_URL}" target="_blank" rel="noopener">American Team Pickleball League</a> Chapter &mdash; California</span>
       <h1>Compete Locally.<br>Qualify Nationally.</h1>
       <p class="lede">California Team Pickleball runs organized, division-based team leagues for players who want real competition and a real team behind them. Live now in the Desert / Coachella Valley &mdash; more of California is next.</p>
       <div class="cta-row">
@@ -29,8 +29,9 @@ body = f'''
       <h2>Follow along on Instagram.</h2>
       <p>Recent photos from the league and players.</p>
     </div>
-    <div data-key="{INSTAGRAM_WIDGET_KEY}" class="ft" id="{INSTAGRAM_WIDGET_ID}"></div>
-    <script src="{INSTAGRAM_WIDGET_SCRIPT}"></script>
+    <div class="instagram-embed">
+      <iframe src="{INSTAGRAM_WIDGET_IFRAME_SRC}" title="California Team Pickleball Instagram feed" loading="lazy" frameborder="0"></iframe>
+    </div>
     <div class="cta-row" style="margin-top: var(--space-3);">
       <a class="btn btn-outline" href="{INSTAGRAM_URL}" target="_blank" rel="noopener">Follow on Instagram</a>
     </div>
