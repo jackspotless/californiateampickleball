@@ -11,17 +11,17 @@ BRAND = "California Team Pickleball"
 PHONE_DISPLAY = "(951) 858-6070"
 PHONE_TEL = "+19518586070"
 EMAIL = "jon@desertatpl.com"  # TODO: confirm if a @caliteampickleball.com address will be set up post-rebrand
-REGISTER_URL = "https://ctpl.pickleballscores.com"  # TODO: swap for direct registration link once Jon creates one
-GENERAL_REGISTER_URL = "https://ctpl.pickleballscores.com/?mod=nndz-TUhuN25QMD0%3D&type=2"  # actual registration entry point
-HEADER_REGISTER_URL = "https://ctpl.pickleballscores.com/?mod=nndz-TjJiOWtOR2sxTnhI"  # direct link for the header nav "Register" CTA specifically (confirmed by Jon)
+REGISTER_URL = "https://ctpl.pickleballscores.com"  # bare platform URL — used only for informational/citation text (e.g. privacy/terms), not CTA buttons
+GENERAL_REGISTER_URL = "https://ctpl.pickleballscores.com/?mod=nndz-TjJiOWtOR2sxTnhI"  # THE confirmed direct registration link (Jon, Sept 2026) — used for every "Register" button sitewide
+HEADER_REGISTER_URL = GENERAL_REGISTER_URL  # kept as an alias so header code stays self-documenting; same destination
 ATPL_URL = "https://atplnation.org"
 INSTAGRAM_URL = "https://instagram.com/desertatpl"  # confirmed handle; flag if a @caliteampickleball handle replaces this post-rebrand
 FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61585200779983"
 INSTAGRAM_WIDGET_IFRAME_SRC = "https://widgets.sociablekit.com/instagram-feed/iframe/25715543"  # SociableKIT free-tier Instagram feed embed (replaces Fouita, Sept 2026); manual sync in SociableKIT dashboard after new posts
 RULEBOOK_URL = "/downloads/ctpl-desert-division-rulebook.pdf"
 SCORESHEET_URL = "/downloads/ctpl-match-score-sheet.pdf"
-FALL_NIGHT_2026_REGISTER_URL = "https://ctpl.pickleballscores.com/?mod=nndz-SW5Qbm4rZTYxdHBibWo0aVZjL2U%3D&formid=nndz-WnlLNXhRPT0%3D"
-FALL_DAY_2026_REGISTER_URL = "https://ctpl.pickleballscores.com/?mod=nndz-SW5Qbm4rZTYxdHBibWo0aVZjL2U%3D&formid=nndz-WnlLNXhBPT0%3D"
+FALL_NIGHT_2026_REGISTER_URL = GENERAL_REGISTER_URL  # was a league-specific formid link; superseded Sept 2026 — Jon wants the general link used everywhere
+FALL_DAY_2026_REGISTER_URL = GENERAL_REGISTER_URL  # was a league-specific formid link; superseded Sept 2026 — Jon wants the general link used everywhere
 CSSV = "20260922"
 OUT = os.path.dirname(os.path.abspath(__file__))
 
@@ -195,7 +195,7 @@ def footer():
           <li><a href="/rules-forms">Rules &amp; Forms</a></li>
           <li><a href="/news/">News</a></li>
           <li><a href="/contact">Contact</a></li>
-          <li><a href="/register">Register</a></li>
+          <li><a href="{GENERAL_REGISTER_URL}" target="_blank" rel="noopener">Register</a></li>
           <li><a href="{ATPL_URL}" target="_blank" rel="noopener">ATPL Nation &#8599;</a></li>
         </ul>
       </div>

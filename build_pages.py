@@ -12,7 +12,7 @@ body = f'''
       <h1>Compete Locally.<br>Qualify Nationally.</h1>
       <p class="lede">California Team Pickleball runs organized, division-based team leagues for players who want real competition and a real team behind them. Live now in the Desert / Coachella Valley &mdash; more of California is next.</p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="/register">Register</a>
+        <a class="btn btn-primary" href="{GENERAL_REGISTER_URL}" target="_blank" rel="noopener">Register</a>
         <a class="btn btn-outline" href="/leagues/">See the Leagues</a>
       </div>
     </div>
@@ -150,7 +150,7 @@ body = f'''
       </details>
       <details class="faq-item">
         <summary>Where do I register?</summary>
-        <p>Registration and season scoring are handled through our league management partner. Head to the <a href="/register" style="color: var(--color-gold);">Register</a> page to get started.</p>
+        <p>Registration and season scoring are handled through our league management partner. Head to the <a href="{GENERAL_REGISTER_URL}" target="_blank" rel="noopener" style="color: var(--color-gold);">Register</a> page to get started.</p>
       </details>
     </div>
   </div>
@@ -163,7 +163,7 @@ body = f'''
       <h2>Get on the schedule.</h2>
       <p>Registration is handled through our league management partner. It takes a few minutes.</p>
       <div class="cta-row" style="justify-content: center; margin-top: 1em;">
-        <a class="btn btn-primary" href="/register">Register</a>
+        <a class="btn btn-primary" href="{GENERAL_REGISTER_URL}" target="_blank" rel="noopener">Register</a>
       </div>
     </div>
   </div>
@@ -260,8 +260,8 @@ page("/leagues/", f"Leagues | {BRAND}", "Explore California Team Pickleball's Fa
 def league_page(slug, name, season_meta, extra_desc, play_time, dates_note, reg_open_note, division_days, venue_name, venue_note, start_date=None, end_date=None, direct_register_url=None, registration_coming_soon=False):
     trail = [("Home", "/"), ("Leagues", "/leagues/"), (name, None)]
     division_rows = "\n        ".join(f"<li><strong>{day}:</strong> {div}</li>" for day, div in division_days)
-    reg_href = direct_register_url or "/register"
-    reg_attrs = ' target="_blank" rel="noopener"' if direct_register_url else ''
+    reg_href = direct_register_url or GENERAL_REGISTER_URL
+    reg_attrs = ' target="_blank" rel="noopener"'
     reg_label = "Registration Coming Soon" if registration_coming_soon else "Register"
     if registration_coming_soon:
         reg_href, reg_attrs = "/contact", ''
@@ -269,7 +269,7 @@ def league_page(slug, name, season_meta, extra_desc, play_time, dates_note, reg_
     elif direct_register_url:
         signup_faq = f'Registration for {name} goes through our league management partner &mdash; <a href="{direct_register_url}" target="_blank" rel="noopener">register here</a>.'
     else:
-        signup_faq = 'Registration is handled through our league management partner. Visit the <a href="/register">Register</a> page to get started.'
+        signup_faq = f'Registration is handled through our league management partner. Visit the <a href="{GENERAL_REGISTER_URL}" target="_blank" rel="noopener">Register</a> page to get started.'
     body = f'''
 <section class="page-header">
   <div class="container">
@@ -433,7 +433,7 @@ body = f'''
     <div class="callout" style="margin-top: var(--space-5);">
       <h2>Play in the desert region</h2>
       <div class="cta-row" style="justify-content: center; margin-top: 1em;">
-        <a class="btn btn-primary" href="/register">Register</a>
+        <a class="btn btn-primary" href="{GENERAL_REGISTER_URL}" target="_blank" rel="noopener">Register</a>
       </div>
     </div>
   </div>
@@ -488,7 +488,7 @@ body = f'''
     <article class="prose">
       <p>Great Ballz of Fire, captained by Kevin Howell, closed out the fall season as champions of the Men's 50+ 4.0 Division &mdash; a title earned while playing under the Desert ATPL banner, the desert region's league before its rebrand to California Team Pickleball.</p>
       <p>The team carried strong chemistry and consistent play through the season, setting the pace in their division from early on. Congratulations to the whole roster on a well-earned championship.</p>
-      <p>Want your team's name here next season? <a href="/register">Register for an upcoming league</a> and get on the schedule.</p>
+      <p>Want your team's name here next season? <a href="{GENERAL_REGISTER_URL}" target="_blank" rel="noopener">Register for an upcoming league</a> and get on the schedule.</p>
     </article>
   </div>
 </section>
@@ -611,7 +611,7 @@ body = f'''
       <a href="mailto:jon@desertatpl.com">jon@desertatpl.com</a></p>
       <p>Jon Graham is the regional director for the Desert / Coachella Valley region and the best first stop for league questions, division placement, and registration help.</p>
       <h2>Looking to register?</h2>
-      <p>Head to <a href="/register">Register</a> to sign up directly through our league management partner.</p>
+      <p>Head to <a href="{GENERAL_REGISTER_URL}" target="_blank" rel="noopener">Register</a> to sign up directly through our league management partner.</p>
     </div>
     <div>
       <form class="contact-form" name="contact" method="POST" data-netlify="true" action="/thank-you">
@@ -662,7 +662,7 @@ body = f'''
     <h1 style="margin-top:0.3em;">Thanks &mdash; we've got it.</h1>
     <p class="lede" style="margin: 0.8em auto 1.6em; color: var(--color-ink-soft);">Jon will follow up shortly. In the meantime, feel free to browse the leagues or head straight to registration.</p>
     <div class="cta-row" style="justify-content:center;">
-      <a class="btn btn-primary" href="/register">Register</a>
+      <a class="btn btn-primary" href="{GENERAL_REGISTER_URL}" target="_blank" rel="noopener">Register</a>
       <a class="btn btn-outline" style="border-color: var(--color-ink); color: var(--color-ink);" href="/">Back to Home</a>
     </div>
   </div>
