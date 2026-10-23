@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from build import page, breadcrumbs, breadcrumb_schema, svg_courtlines, SPENCER, DOMAIN, BRAND, REGISTER_URL, GENERAL_REGISTER_URL, ATPL_URL, INSTAGRAM_URL, INSTAGRAM_WIDGET_IFRAME_SRC, RULEBOOK_URL, SCORESHEET_URL, FALL_NIGHT_2026_REGISTER_URL, FALL_DAY_2026_REGISTER_URL
+from build import page, breadcrumbs, breadcrumb_schema, svg_courtlines, SPENCER, DOMAIN, BRAND, REGISTER_URL, GENERAL_REGISTER_URL, ATPL_URL, INSTAGRAM_URL, INSTAGRAM_WIDGET_IFRAME_SRC, INSTAGRAM_WIDGET_EMBED_ID, RULEBOOK_URL, SCORESHEET_URL, FALL_NIGHT_2026_REGISTER_URL, FALL_DAY_2026_REGISTER_URL
 
 # ============================================================= HOME
 trail = [("Home", None)]
@@ -30,7 +30,9 @@ body = f'''
       <p>Recent photos from the league and players.</p>
     </div>
     <div class="instagram-embed">
-      <iframe src="{INSTAGRAM_WIDGET_IFRAME_SRC}" title="California Team Pickleball Instagram feed" loading="lazy" frameborder="0"></iframe>
+      <div class="sk-instagram-feed" data-embed-id="{INSTAGRAM_WIDGET_EMBED_ID}"></div>
+      <script src="https://widgets.sociablekit.com/instagram-feed/widget.js" defer></script>
+      <noscript><iframe src="{INSTAGRAM_WIDGET_IFRAME_SRC}" title="California Team Pickleball Instagram feed" loading="lazy" frameborder="0"></iframe></noscript>
     </div>
     <div class="cta-row" style="margin-top: var(--space-3);">
       <a class="btn btn-outline" href="{INSTAGRAM_URL}" target="_blank" rel="noopener">Follow on Instagram</a>

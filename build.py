@@ -17,12 +17,13 @@ HEADER_REGISTER_URL = GENERAL_REGISTER_URL  # kept as an alias so header code st
 ATPL_URL = "https://atplnation.org"
 INSTAGRAM_URL = "https://instagram.com/desertatpl"  # confirmed handle; flag if a @caliteampickleball handle replaces this post-rebrand
 FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61585200779983"
-INSTAGRAM_WIDGET_IFRAME_SRC = "https://widgets.sociablekit.com/instagram-feed/iframe/25715543"  # SociableKIT free-tier Instagram feed embed (replaces Fouita, Sept 2026); manual sync in SociableKIT dashboard after new posts
+INSTAGRAM_WIDGET_IFRAME_SRC = "https://widgets.sociablekit.com/instagram-feed/iframe/25715543"  # SociableKIT free-tier Instagram feed embed (replaces Fouita, Sept 2026); manual sync in SociableKIT dashboard after new posts. Kept as the <noscript> fallback only.
+INSTAGRAM_WIDGET_EMBED_ID = "25715543"  # same SociableKIT widget, loaded via their auto-height script embed (Oct 2026) instead of a fixed-height iframe
 RULEBOOK_URL = "/downloads/ctpl-desert-division-rulebook.pdf"
 SCORESHEET_URL = "/downloads/ctpl-match-score-sheet.pdf"
 FALL_NIGHT_2026_REGISTER_URL = GENERAL_REGISTER_URL  # was a league-specific formid link; superseded Sept 2026 — Jon wants the general link used everywhere
 FALL_DAY_2026_REGISTER_URL = GENERAL_REGISTER_URL  # was a league-specific formid link; superseded Sept 2026 — Jon wants the general link used everywhere
-CSSV = "20261022"
+CSSV = "20261022b"
 
 # ---- Sponsors ----
 # Spencer Orthopedics — Featured Sponsor (Fall + Winter 2026–27). All details below
