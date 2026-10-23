@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from build import page, breadcrumbs, breadcrumb_schema, svg_courtlines, DOMAIN, BRAND, REGISTER_URL, GENERAL_REGISTER_URL, ATPL_URL, INSTAGRAM_URL, INSTAGRAM_WIDGET_IFRAME_SRC, RULEBOOK_URL, SCORESHEET_URL, FALL_NIGHT_2026_REGISTER_URL, FALL_DAY_2026_REGISTER_URL
+from build import page, breadcrumbs, breadcrumb_schema, svg_courtlines, SPENCER, DOMAIN, BRAND, REGISTER_URL, GENERAL_REGISTER_URL, ATPL_URL, INSTAGRAM_URL, INSTAGRAM_WIDGET_IFRAME_SRC, RULEBOOK_URL, SCORESHEET_URL, FALL_NIGHT_2026_REGISTER_URL, FALL_DAY_2026_REGISTER_URL
 
 # ============================================================= HOME
 trail = [("Home", None)]
@@ -121,11 +121,26 @@ body = f'''
 
 <section class="section-tight">
   <div class="container">
-    <div class="callout">
-      <span class="eyebrow">Sponsorship</span>
-      <h2>Sponsor a CTPL season.</h2>
-      <p>Sponsorship packages for the upcoming season are in development. If you're interested in supporting California Team Pickleball, <a href="/contact">get in touch</a> and we'll follow up with details.</p>
+    <div class="section-head">
+      <span class="eyebrow">Our Sponsors</span>
+      <h2>Backing the league.</h2>
     </div>
+    <div class="sponsor-feature">
+      <a class="sponsor-logo" href="{SPENCER['url']}" target="_blank" rel="sponsored noopener">
+        <img src="{SPENCER['logo']}" width="596" height="200" alt="Spencer Orthopedics logo" loading="lazy">
+      </a>
+      <div class="sponsor-body">
+        <span class="sponsor-tier">Featured Sponsor</span>
+        <h3>{SPENCER['name']}</h3>
+        <p>{SPENCER['blurb']} Located in Palm Desert &amp; La Quinta.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="/sponsors">Sports Injury Center &amp; Pre-Game Stretches</a>
+          <a class="btn btn-outline btn-ink" href="{SPENCER['url']}" target="_blank" rel="sponsored noopener">Visit spencerorthopedics.com</a>
+        </div>
+        <p class="sponsor-contact"><a href="tel:{SPENCER['phone_tel']}">{SPENCER['phone_display']}</a></p>
+      </div>
+    </div>
+    <p class="sponsor-cta-line">Interested in sponsoring California Team Pickleball? <a href="/contact">Get in touch</a>.</p>
   </div>
 </section>
 
@@ -173,6 +188,7 @@ schema = [
     {"@context": "https://schema.org", "@type": "SportsOrganization", "@id": f"{DOMAIN}/#organization",
      "name": BRAND, "url": DOMAIN + "/", "telephone": "+19518586070", "email": "jon@desertatpl.com",
      "areaServed": [{"@type": "AdministrativeArea", "name": "Coachella Valley, CA"}],
+     "sponsor": [{"@type": "Organization", "@id": SPENCER["url"] + "#organization", "name": SPENCER["name"], "url": SPENCER["url"]}],
      "sameAs": []},
     {"@context": "https://schema.org", "@type": "WebSite", "name": BRAND, "url": DOMAIN + "/"},
     {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
@@ -592,6 +608,133 @@ body = f'''
 '''
 schema = [breadcrumb_schema("/register", trail)]
 page("/register", f"Register | {BRAND}", "Register for California Team Pickleball leagues. Registration and scoring are handled through our league management partner.", body, schema)
+
+# ============================================================= SPONSORS
+trail = [("Home", "/"), ("Sponsors", None)]
+spencer_locations = "\n          ".join(
+    f'<div class="venue-item"><h3>{label}</h3><span class="meta">{addr}</span></div>' for label, addr in SPENCER["locations"]
+)
+body = f'''
+<section class="page-header">
+  <div class="container">
+    <div class="breadcrumbs">{breadcrumbs(trail)}</div>
+    <h1>Sponsors</h1>
+    <p class="lede">The local businesses backing California Team Pickleball players and seasons. Thank you for keeping the league on court.</p>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Featured Sponsor</span>
+      <h2>{SPENCER['name']}</h2>
+    </div>
+    <div class="sponsor-feature">
+      <a class="sponsor-logo" href="{SPENCER['url']}" target="_blank" rel="sponsored noopener">
+        <img src="{SPENCER['logo']}" width="596" height="200" alt="Spencer Orthopedics logo" loading="eager">
+      </a>
+      <div class="sponsor-body">
+        <p>{SPENCER['blurb']}</p>
+        <p class="sponsor-contact">
+          <a href="tel:{SPENCER['phone_tel']}">{SPENCER['phone_display']}</a>
+          <span>&middot;</span>
+          <a href="{SPENCER['url']}" target="_blank" rel="sponsored noopener">spencerorthopedics.com</a>
+        </p>
+        <p class="sponsor-social">
+          <a href="{SPENCER['facebook']}" target="_blank" rel="sponsored noopener">Facebook</a>
+          <a href="{SPENCER['instagram']}" target="_blank" rel="sponsored noopener">Instagram</a>
+        </p>
+      </div>
+    </div>
+    <div class="venue-list" style="margin-top: var(--space-3);">
+          {spencer_locations}
+    </div>
+  </div>
+</section>
+
+<section class="section-tight" id="sports-injury-center">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Sports Injury Center</span>
+      <h2>Hurt on the court? Get seen today.</h2>
+      <p>Spencer Orthopedics' Sports Injury Center offers same-day evaluation by an orthopedic specialist, so you're not waiting weeks for a standard appointment. Walk in, call ahead, or request a same-day appointment online.</p>
+    </div>
+    <div class="grid-2">
+      <div class="venue-item">
+        <h3>What they treat</h3>
+        <div class="prose">
+          <ul>
+            <li>Shoulder, elbow, wrist and hand injuries</li>
+            <li>Hip, knee, ankle and foot injuries</li>
+            <li>Muscle, tendon and ligament injuries</li>
+            <li>Bone and joint injuries, including fractures</li>
+          </ul>
+          <p>On site: X-ray imaging, fracture care, bracing and splinting, and in-office injections when appropriate. Rehab can be coordinated with Spencer's own physical therapy and chiropractic teams.</p>
+        </div>
+      </div>
+      <div class="venue-item">
+        <h3>Hours &amp; locations</h3>
+        <div class="prose">
+          <p><strong>{SPENCER['hours']}</strong><br>Palm Desert and La Quinta offices.</p>
+          <p>For life-threatening injuries, call 911 or go to the nearest emergency room.</p>
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="{SPENCER['book_url']}" target="_blank" rel="sponsored noopener">Request an Appointment</a>
+          <a class="btn btn-outline btn-ink" href="tel:{SPENCER['phone_tel']}">Call {SPENCER['phone_display']}</a>
+        </div>
+        <p class="sponsor-contact" style="margin-top: var(--space-2);"><a href="{SPENCER['injury_center_url']}" target="_blank" rel="sponsored noopener">More about the Sports Injury Center &rarr;</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight" id="pregame-stretches">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Pre-Game Stretches</span>
+      <h2>Warm up before you play.</h2>
+      <p>Four essential stretches before pickleball, from the team at Spencer Orthopedics.</p>
+    </div>
+    <div class="stretch-layout">
+      <a class="stretch-poster" href="{SPENCER['stretches_img']}" target="_blank" rel="noopener">
+        <img src="{SPENCER['stretches_img']}" width="1170" height="2086" alt="Spencer Orthopedics infographic: 4 essential stretches before pickleball &mdash; dynamic calf stretch and heel raises, walking lunges with hip flexor stretch, standing trunk rotations, and arm circles with shoulder rotations." loading="lazy">
+      </a>
+      <div class="prose">
+        <ol class="stretch-list">
+          <li><strong>Dynamic calf stretch &amp; heel raises</strong><span>10 per leg, then 10&ndash;15 heel raises</span></li>
+          <li><strong>Walking lunges with hip flexor stretch</strong><span>8&ndash;10 per leg</span></li>
+          <li><strong>Standing trunk rotations</strong><span>15&ndash;20 controlled rotations</span></li>
+          <li><strong>Arm circles &amp; shoulder rotations</strong><span>10&ndash;15 circles each direction, then 5&ndash;10 practice swings</span></li>
+        </ol>
+        <p>Tap the guide to open it full size for step-by-step instructions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="callout">
+      <span class="eyebrow">Become a Sponsor</span>
+      <h2>Put your business in front of the league.</h2>
+      <p>Interested in supporting California Team Pickleball? <a href="/contact">Get in touch</a> and we'll follow up with details.</p>
+    </div>
+  </div>
+</section>
+'''
+schema = [
+    {"@context": "https://schema.org", "@type": "WebPage", "name": "Sponsors", "url": DOMAIN + "/sponsors",
+     "about": {"@id": DOMAIN + "/#organization"}},
+    {"@context": "https://schema.org", "@type": "MedicalOrganization", "@id": SPENCER["url"] + "#organization",
+     "name": SPENCER["name"], "url": SPENCER["url"], "telephone": SPENCER["phone_tel"],
+     "sameAs": [SPENCER["facebook"], SPENCER["instagram"]],
+     "location": [
+         {"@type": "Place", "name": "Spencer Orthopedics — Palm Desert", "address": {"@type": "PostalAddress", "streetAddress": "36953 Cook St., Suite 101", "addressLocality": "Palm Desert", "addressRegion": "CA", "postalCode": "92211", "addressCountry": "US"}},
+         {"@type": "Place", "name": "Spencer Orthopedics — La Quinta", "address": {"@type": "PostalAddress", "streetAddress": "47020 Washington St.", "addressLocality": "La Quinta", "addressRegion": "CA", "postalCode": "92253", "addressCountry": "US"}},
+     ]},
+    breadcrumb_schema("/sponsors", trail),
+]
+page("/sponsors", f"Sponsors | {BRAND}", "California Team Pickleball's sponsors, featuring Spencer Orthopedics: same-day sports injury care in Palm Desert and La Quinta, plus pre-game stretches for pickleball players.", body, schema)
 
 # ============================================================= CONTACT
 trail = [("Home", "/"), ("Contact", None)]

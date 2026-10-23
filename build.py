@@ -22,7 +22,30 @@ RULEBOOK_URL = "/downloads/ctpl-desert-division-rulebook.pdf"
 SCORESHEET_URL = "/downloads/ctpl-match-score-sheet.pdf"
 FALL_NIGHT_2026_REGISTER_URL = GENERAL_REGISTER_URL  # was a league-specific formid link; superseded Sept 2026 — Jon wants the general link used everywhere
 FALL_DAY_2026_REGISTER_URL = GENERAL_REGISTER_URL  # was a league-specific formid link; superseded Sept 2026 — Jon wants the general link used everywhere
-CSSV = "20260922"
+CSSV = "20261022"
+
+# ---- Sponsors ----
+# Spencer Orthopedics — Featured Sponsor (Fall + Winter 2026–27). All details below
+# are from spencerorthopedics.com (Oct 2026) or Spencer's own supplied copy.
+SPENCER = {
+    "name": "Spencer Orthopedics",
+    "url": "https://spencerorthopedics.com/",
+    "injury_center_url": "https://spencerorthopedics.com/services/sports-injury-center/",
+    "book_url": "https://spencerorthopedics.com/contact-us/",
+    "phone_display": "(760) 797-7540",
+    "phone_tel": "+17607977540",
+    # Spencer-approved description (texted to Jon) — use verbatim.
+    "blurb": "Spencer Orthopedics provides top-tier orthopedic care, sports medicine and regenerative treatments to keep our community active, mobile and pain-free. We accept most major insurance plans.",
+    "hours": "Monday&ndash;Friday, 8am&ndash;5pm",
+    "locations": [
+        ("Palm Desert", "36953 Cook St., Suite 101, Palm Desert, CA 92211"),
+        ("La Quinta", "47020 Washington St., La Quinta, CA 92253"),
+    ],
+    "facebook": "https://www.facebook.com/share/1U2ULJDdrE/",
+    "instagram": "https://www.instagram.com/spencerortho/",
+    "logo": "/images/sponsors/spencer-orthopedics-logo.png",
+    "stretches_img": "/images/sponsors/spencer-pregame-stretches.jpg",
+}
 OUT = os.path.dirname(os.path.abspath(__file__))
 
 NAV_LEAGUES = [
@@ -122,6 +145,7 @@ def header(active_path):
       <a href="/news/"{cur('/news/')}>News</a>
       <a href="/about"{cur('/about')}>About</a>
       <a href="/contact"{cur('/contact')}>Contact</a>
+      <a href="/sponsors"{cur('/sponsors')}>Sponsors</a>
       <a href="{HEADER_REGISTER_URL}" class="nav-cta" target="_blank" rel="noopener">Register</a>
     </nav>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
@@ -195,6 +219,7 @@ def footer():
           <li><a href="/rules-forms">Rules &amp; Forms</a></li>
           <li><a href="/news/">News</a></li>
           <li><a href="/contact">Contact</a></li>
+          <li><a href="/sponsors">Sponsors</a></li>
           <li><a href="{GENERAL_REGISTER_URL}" target="_blank" rel="noopener">Register</a></li>
           <li><a href="{ATPL_URL}" target="_blank" rel="noopener">ATPL Nation &#8599;</a></li>
         </ul>

@@ -696,6 +696,95 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .prose ul { list-style: disc; padding-left: 1.4em; margin-bottom: 1em; }
 .prose li { margin-bottom: 0.4em; }
 
+/* ---------- Sponsors ---------- */
+.btn-ink { border-color: var(--color-ink); color: var(--color-ink); }
+.btn-ink:hover { background: var(--color-chalk-dim); }
+
+.sponsor-feature {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.9fr) 1.6fr;
+  gap: var(--space-4);
+  align-items: center;
+  background: var(--color-white);
+  border: 1px solid var(--color-line);
+  border-top: 4px solid var(--color-gold);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+}
+.sponsor-logo { display: flex; justify-content: center; align-items: center; }
+.sponsor-logo img { width: 100%; max-width: 340px; height: auto; }
+.sponsor-tier {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-clay);
+}
+.sponsor-body h3 { font-size: 1.6rem; margin: 0.25em 0 0.5em; }
+.sponsor-body p { color: var(--color-ink-soft); }
+.sponsor-body .cta-row { margin: var(--space-3) 0 var(--space-2); }
+.sponsor-contact {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6em;
+  margin: 0;
+}
+.sponsor-contact a { color: var(--color-court); font-weight: 600; text-decoration: none; }
+.sponsor-contact a:hover { text-decoration: underline; }
+.sponsor-social { display: flex; gap: var(--space-3); margin: var(--space-2) 0 0; font-size: 0.9rem; }
+.sponsor-social a { color: var(--color-ink); font-weight: 600; }
+.sponsor-cta-line { margin-top: var(--space-3); color: var(--color-ink-soft); text-align: center; }
+.sponsor-cta-line a { color: var(--color-court); font-weight: 600; }
+
+.stretch-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: var(--space-4);
+  align-items: start;
+}
+.stretch-poster {
+  display: block;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--color-white);
+}
+.stretch-poster img { width: 100%; height: auto; }
+.prose ol.stretch-list { list-style: none; padding: 0; counter-reset: stretch; margin: 0 0 1em; }
+.stretch-list li {
+  counter-increment: stretch;
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  column-gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-bottom: 1px dashed var(--color-line);
+}
+.stretch-list li::before {
+  content: counter(stretch);
+  grid-row: span 2;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--color-court);
+  line-height: 1;
+}
+.stretch-list strong { font-size: 1.05rem; }
+.stretch-list span { font-family: var(--font-mono); font-size: 0.85rem; color: var(--color-ink-soft); }
+
+@media (max-width: 860px) {
+  .sponsor-feature, .stretch-layout { grid-template-columns: 1fr; gap: var(--space-3); padding: var(--space-3); }
+  .stretch-layout { padding: 0; }
+  .sponsor-logo img { max-width: 260px; }
+}
+
+/* Nav got an 8th item (Sponsors) — tighten spacing before the mobile breakpoint */
+@media (max-width: 1180px) and (min-width: 861px) {
+  .primary-nav { gap: var(--space-2); }
+  .primary-nav > a, .nav-item > a { font-size: 0.875rem; }
+  .brand { font-size: 1.1rem; }
+}
+
 /* ---------- 404 ---------- */
 .error-page { text-align: center; padding: var(--space-6) 0; }
 .error-page h1 { font-size: clamp(4rem, 12vw, 8rem); color: var(--color-court); }
