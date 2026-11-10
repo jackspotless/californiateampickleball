@@ -23,7 +23,12 @@ RULEBOOK_URL = "/downloads/ctpl-desert-division-rulebook.pdf"
 SCORESHEET_URL = "/downloads/ctpl-match-score-sheet.pdf"
 FALL_NIGHT_2026_REGISTER_URL = GENERAL_REGISTER_URL  # was a league-specific formid link; superseded Sept 2026 — Jon wants the general link used everywhere
 FALL_DAY_2026_REGISTER_URL = GENERAL_REGISTER_URL  # was a league-specific formid link; superseded Sept 2026 — Jon wants the general link used everywhere
-CSSV = "20261022b"
+# Winter Night League 2027 — registration opens Sat Nov 14, 2026 (per Jon's flyer).
+# ON NOV 14: flip WINTER_NIGHT_2027_REGISTRATION_OPEN to True and re-run build_pages.py —
+# the Winter page, home card, and leagues hub card all switch from "opens Nov 14" to live Register buttons.
+WINTER_NIGHT_2027_REGISTER_URL = GENERAL_REGISTER_URL  # swap if Jon creates a Winter-specific link
+WINTER_NIGHT_2027_REGISTRATION_OPEN = False
+CSSV = "20261110b"
 
 # ---- Sponsors ----
 # Spencer Orthopedics — Featured Sponsor (Fall + Winter 2026–27). All details below
@@ -35,8 +40,9 @@ SPENCER = {
     "book_url": "https://spencerorthopedics.com/contact-us/",
     "phone_display": "(760) 797-7540",
     "phone_tel": "+17607977540",
-    # Spencer-approved description (texted to Jon) — use verbatim.
-    "blurb": "Spencer Orthopedics provides top-tier orthopedic care, sports medicine and regenerative treatments to keep our community active, mobile and pain-free. We accept most major insurance plans.",
+    # Based on Spencer's approved description (texted to Jon). Rewritten Nov 2026 from
+    # CTPL's perspective ("they", not "we") at Jon's request — substance unchanged.
+    "blurb": "Spencer Orthopedics provides top-tier orthopedic care, sports medicine and regenerative treatments to keep the Coachella Valley community active, mobile and pain-free. They accept most major insurance plans.",
     "hours": "Monday&ndash;Friday, 8am&ndash;5pm",
     "locations": [
         ("Palm Desert", "36953 Cook St., Suite 101, Palm Desert, CA 92211"),
@@ -159,11 +165,18 @@ def register_banner():
     # Sitewide strip pointing to the league management partner for both
     # registration and score entry. Placement/exact target confirmed with
     # Jon; swap REGISTER_URL for a direct flow link once he provides one.
+    # Winter Night 2027 messaging — follows WINTER_NIGHT_2027_REGISTRATION_OPEN (flip on Nov 14).
+    if WINTER_NIGHT_2027_REGISTRATION_OPEN:
+        _winter_banner_text = '<strong>Winter Night League registration is open.</strong> Jan 11 &ndash; Mar 18, 2027 at Palm Desert Resort &middot; $80.'
+        _winter_banner_btn = f'<a class="btn btn-primary btn-sm" href="{WINTER_NIGHT_2027_REGISTER_URL}" target="_blank" rel="noopener">Register</a>'
+    else:
+        _winter_banner_text = '<strong>Winter Night League registration opens Sat, Nov 14.</strong> Jan 11 &ndash; Mar 18, 2027 at Palm Desert Resort &middot; $80.'
+        _winter_banner_btn = '<a class="btn btn-primary btn-sm" href="/leagues/winter-night">Winter Details</a>'
     return f'''<div class="register-banner">
   <div class="container register-banner-inner">
-    <span class="register-banner-text"><strong>Season registration is open.</strong> Register to play or enter match scores on our league platform.</span>
+    <span class="register-banner-text">{_winter_banner_text}</span>
     <div class="register-banner-links">
-      <a class="btn btn-primary btn-sm" href="{GENERAL_REGISTER_URL}" target="_blank" rel="noopener">Register</a>
+      {_winter_banner_btn}
       <a class="btn btn-outline btn-sm" href="{REGISTER_URL}" target="_blank" rel="noopener">Enter / View Scores</a>
     </div>
   </div>

@@ -1,5 +1,40 @@
 #!/usr/bin/env python3
-from build import page, breadcrumbs, breadcrumb_schema, svg_courtlines, SPENCER, DOMAIN, BRAND, REGISTER_URL, GENERAL_REGISTER_URL, ATPL_URL, INSTAGRAM_URL, INSTAGRAM_WIDGET_IFRAME_SRC, INSTAGRAM_WIDGET_EMBED_ID, RULEBOOK_URL, SCORESHEET_URL, FALL_NIGHT_2026_REGISTER_URL, FALL_DAY_2026_REGISTER_URL
+from build import page, breadcrumbs, breadcrumb_schema, svg_courtlines, SPENCER, DOMAIN, BRAND, REGISTER_URL, GENERAL_REGISTER_URL, ATPL_URL, INSTAGRAM_URL, INSTAGRAM_WIDGET_IFRAME_SRC, INSTAGRAM_WIDGET_EMBED_ID, RULEBOOK_URL, SCORESHEET_URL, FALL_NIGHT_2026_REGISTER_URL, FALL_DAY_2026_REGISTER_URL, WINTER_NIGHT_2027_REGISTER_URL, WINTER_NIGHT_2027_REGISTRATION_OPEN
+
+WINTER_CARD_STATUS = "$80 &middot; registration open now." if WINTER_NIGHT_2027_REGISTRATION_OPEN else "$80 &middot; registration opens Sat, Nov 14."
+
+# Homepage announcement — sits directly under the hero. Driven by the same flag in build.py,
+# so flipping WINTER_NIGHT_2027_REGISTRATION_OPEN on Nov 14 updates it too.
+if WINTER_NIGHT_2027_REGISTRATION_OPEN:
+    _wa_eyebrow, _wa_status_lbl, _wa_status = "Registration Open", "Registration", "Open Now"
+    _wa_cta = f'<a class="btn btn-primary" href="{WINTER_NIGHT_2027_REGISTER_URL}" target="_blank" rel="noopener">Register</a>'
+else:
+    _wa_eyebrow, _wa_status_lbl, _wa_status = "Just Announced", "Registration Opens", "Sat, Nov 14"
+    _wa_cta = ''
+WINTER_ANNOUNCE = f'''<section class="announce" aria-labelledby="winter-announce-h">
+  <div class="container announce-inner">
+    <div class="announce-copy">
+      <span class="eyebrow">{_wa_eyebrow}</span>
+      <h2 id="winter-announce-h">Winter Night League 2027</h2>
+      <p class="announce-sub">Jan 11 &ndash; Mar 18, 2027 &middot; Palm Desert Resort &middot; 6&ndash;8pm</p>
+      <ul class="announce-days">
+        <li><span>Mon</span> Women's</li>
+        <li><span>Tue</span> Men's</li>
+        <li><span>Wed</span> Mixed</li>
+        <li><span>Thu</span> Mixed Open &amp; Mixed 2.5/3.0 <em>(all ages)</em></li>
+      </ul>
+      <div class="cta-row">
+        {_wa_cta}
+        <a class="btn btn-outline btn-ink" href="/leagues/winter-night">Winter League Details</a>
+      </div>
+    </div>
+    <div class="announce-tiles">
+      <div class="announce-tile tile-price"><span class="num">$80</span><span class="lbl">Registration &middot; includes site fee</span></div>
+      <div class="announce-tile tile-date"><span class="lbl">{_wa_status_lbl}</span><span class="num">{_wa_status}</span></div>
+    </div>
+  </div>
+</section>
+'''
 
 # ============================================================= HOME
 trail = [("Home", None)]
@@ -22,6 +57,7 @@ body = f'''
   </div>
 </section>
 
+{WINTER_ANNOUNCE}
 <section class="section-tight">
   <div class="container">
     <div class="section-head">
@@ -75,9 +111,9 @@ body = f'''
         <p>Evening matches for players who work through the day.</p>
       </a>
       <a class="league-card" href="/leagues/winter-night">
-        <span class="meta">Winter &middot; Evening</span>
+        <span class="meta">Winter &middot; Evening &middot; Jan 11 &ndash; Mar 18, 2027</span>
         <h3>Winter Night League</h3>
-        <p>The desert's evening season, played through the cooler winter months.</p>
+        <p>Monday&ndash;Thursday evenings at Palm Desert Resort. {WINTER_CARD_STATUS}</p>
       </a>
     </div>
   </div>
@@ -263,9 +299,9 @@ body = f'''
         <p>Evening matches for players who work through the day.</p>
       </a>
       <a class="league-card" href="/leagues/winter-night">
-        <span class="meta">Winter &middot; Evening</span>
+        <span class="meta">Winter &middot; Evening &middot; Jan 11 &ndash; Mar 18, 2027</span>
         <h3>Winter Night League</h3>
-        <p>The desert's evening season, played through the cooler winter months.</p>
+        <p>Monday&ndash;Thursday evenings at Palm Desert Resort. {WINTER_CARD_STATUS}</p>
       </a>
     </div>
   </div>
@@ -275,19 +311,25 @@ schema = [breadcrumb_schema("/leagues/", trail)]
 page("/leagues/", f"Leagues | {BRAND}", "Explore California Team Pickleball's Fall Day, Fall Night, and Winter Night leagues. Organized team play by division and skill level.", body, schema)
 
 # ============================================================= LEAGUE PAGE TEMPLATE
-def league_page(slug, name, season_meta, extra_desc, play_time, dates_note, reg_open_note, division_days, venue_name, venue_note, start_date=None, end_date=None, direct_register_url=None, registration_coming_soon=False):
+def league_page(slug, name, season_meta, extra_desc, play_time, dates_note, reg_open_note, division_days, venue_name, venue_note, start_date=None, end_date=None, direct_register_url=None, registration_coming_soon=False, price_note=None, flyer=None, coming_soon_label="Registration Coming Soon"):
     trail = [("Home", "/"), ("Leagues", "/leagues/"), (name, None)]
     division_rows = "\n        ".join(f"<li><strong>{day}:</strong> {div}</li>" for day, div in division_days)
     reg_href = direct_register_url or GENERAL_REGISTER_URL
     reg_attrs = ' target="_blank" rel="noopener"'
-    reg_label = "Registration Coming Soon" if registration_coming_soon else "Register"
+    reg_label = coming_soon_label if registration_coming_soon else "Register"
     if registration_coming_soon:
         reg_href, reg_attrs = "/contact", ''
-        signup_faq = f'Registration for {name} hasn\'t opened yet. <a href="/contact">Contact us</a> and we\'ll let you know as soon as it does.'
+        signup_faq = f'Registration for {name} hasn\'t opened yet. {reg_open_note} <a href="/contact">Contact us</a> with any questions in the meantime.'
     elif direct_register_url:
         signup_faq = f'Registration for {name} goes through our league management partner &mdash; <a href="{direct_register_url}" target="_blank" rel="noopener">register here</a>.'
     else:
         signup_faq = f'Registration is handled through our league management partner. Visit the <a href="{GENERAL_REGISTER_URL}" target="_blank" rel="noopener">Register</a> page to get started.'
+    price_html = f'<h2>Cost</h2>\n      <p>{price_note}</p>\n\n      ' if price_note else ''
+    flyer_html = (f'''<figure class="league-flyer">
+      <a href="{flyer['src']}" target="_blank" rel="noopener"><img src="{flyer['src']}" width="{flyer['w']}" height="{flyer['h']}" alt="{flyer['alt']}" loading="lazy"></a>
+      <figcaption><a href="{flyer['src']}" download>Download the flyer</a> to share with your team.</figcaption>
+    </figure>
+    ''' if flyer else '')
     body = f'''
 <section class="page-header">
   <div class="container">
@@ -306,7 +348,7 @@ def league_page(slug, name, season_meta, extra_desc, play_time, dates_note, reg_
         {division_rows}
       </ul>
 
-      <h2>Divisions</h2>
+      {price_html}<h2>Divisions</h2>
       <p>Within each day above, teams compete in divisions organized by skill level and age bracket, so matches stay competitive across the season. If you're not sure which division fits, we'll help you find it before you register.</p>
 
       <h2>Where it's played</h2>
@@ -322,7 +364,7 @@ def league_page(slug, name, season_meta, extra_desc, play_time, dates_note, reg_
         <p>Requirements vary by season and division &mdash; <a href="/contact">contact us</a> and we'll point you in the right direction.</p>
       </details>
     </div>
-    <div class="callout" style="margin-top: var(--space-5);">
+    {flyer_html}<div class="callout" style="margin-top: var(--space-5);">
       <h2>Ready for {name}?</h2>
       <div class="cta-row" style="justify-content: center; margin-top: 1em;">
         <a class="btn btn-primary" href="{reg_href}"{reg_attrs}>{reg_label}</a>
@@ -365,15 +407,21 @@ league_page(
     direct_register_url=FALL_NIGHT_2026_REGISTER_URL,
 )
 league_page(
-    "winter-night", "Winter Night League", "Winter Season",
-    "The desert's cooler-weather evening season &mdash; competitive team pickleball played after dark through winter.",
-    play_time="6:00&ndash;8:00pm",
-    dates_note="Winter Night League season dates are TBD &mdash; check back or contact us for the latest.",
-    reg_open_note="Registration is coming soon.",
-    division_days=[("Monday", "Women's Doubles"), ("Tuesday", "Men's Doubles"), ("Wednesday", "Mixed Doubles")],
-    venue_name="Palm Desert Resort",
+    "winter-night", "Winter Night League", "Winter Season &middot; 2027",
+    "The desert's cooler-weather evening season &mdash; competitive team pickleball under the lights at Palm Desert Resort, January through March.",
+    play_time="6:00&ndash;8:00pm, Monday through Thursday",
+    dates_note="The 2027 Winter Night League season runs Monday, January 11 &ndash; Thursday, March 18, 2027.",
+    reg_open_note="Registration opens Saturday, November 14." if not WINTER_NIGHT_2027_REGISTRATION_OPEN else "Registration is open now.",
+    division_days=[("Monday", "Women's Doubles"), ("Tuesday", "Men's Doubles"), ("Wednesday", "Mixed Doubles"), ("Thursday", "Mixed Open &amp; Mixed 2.5/3.0 (all ages)")],
+    venue_name="The Courts at Palm Desert Resort",
     venue_note="77333 Country Club Dr., Palm Desert, CA 92211",
-    registration_coming_soon=True,
+    start_date="2027-01-11", end_date="2027-03-18",
+    direct_register_url=WINTER_NIGHT_2027_REGISTER_URL,
+    registration_coming_soon=not WINTER_NIGHT_2027_REGISTRATION_OPEN,
+    coming_soon_label="Registration Opens Nov 14",
+    price_note="Registration is <strong>$80</strong>, and that includes the site fee.",
+    flyer={"src": "/images/flyers/winter-night-2027-flyer.jpg", "w": 1224, "h": 1584,
+           "alt": "Winter Night League 2027 flyer: January 11 to March 18 at Palm Desert Resort, 6 to 8pm. Monday women's, Tuesday men's, Wednesday mixed, Thursday mixed open and mixed 2.5/3.0. $80 registration including site fee. Registration opens Saturday, November 14."},
 )
 
 # ============================================================= REGIONS INDEX
@@ -445,7 +493,7 @@ body = f'''
     <div class="grid-3">
       <a class="league-card" href="/leagues/fall-day"><span class="meta">Fall &middot; Daytime</span><h3>Fall Day League</h3></a>
       <a class="league-card" href="/leagues/fall-night"><span class="meta">Fall &middot; Evening</span><h3>Fall Night League</h3></a>
-      <a class="league-card" href="/leagues/winter-night"><span class="meta">Winter &middot; Evening</span><h3>Winter Night League</h3></a>
+      <a class="league-card" href="/leagues/winter-night"><span class="meta">Winter &middot; Evening &middot; Jan&ndash;Mar 2027</span><h3>Winter Night League</h3></a>
     </div>
 
     <div class="callout" style="margin-top: var(--space-5);">
